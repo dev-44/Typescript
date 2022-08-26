@@ -44,3 +44,28 @@ type Song = {
 function calculatePayout(song: Song): number {
     return song.numStreams * 0.00333
 }
+
+//readonly modifier
+type User = {
+    readonly id: number,
+    username: string
+}
+
+//Type Intersection
+type Cat = {
+    numLives: number
+}
+
+type Dog = {
+    breed: string
+}
+
+type CatDog = Cat & Dog & {
+    age: number
+}
+
+const specimen: CatDog = {
+    numLives: 7,
+    breed: "Husky",
+    age: 8
+}
