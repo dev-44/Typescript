@@ -17,6 +17,7 @@ function randomCoordinate(): {x: number, y: number} {
 type Point = {
     x: number,
     y: number
+    z?: number              // ? = optional
 }
 
 let coordinate2: Point = {x: 34, y: 2}
@@ -27,4 +28,19 @@ function randomCoordinate2(): Point {
 
 function doublePoint(point: Point): Point {
     return {x: point.x * 2, y: point.y * 2}
+}
+
+//Nested Objects
+type Song = {
+    title: string,
+    artist: string,
+    numStreams: number,
+    credits: {
+        producer: string,
+        writer: string
+    }
+}
+
+function calculatePayout(song: Song): number {
+    return song.numStreams * 0.00333
 }
