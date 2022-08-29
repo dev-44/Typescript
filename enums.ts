@@ -1,4 +1,5 @@
 //Example 1     Numeric enums
+//Se utiliza para tener disponible el autocomplete en constantes agrupadas que se repiten
 enum OrderStatus {
     PENDING,
     SHIPPED,
