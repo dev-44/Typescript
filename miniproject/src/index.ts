@@ -3,12 +3,14 @@ interface ToDo {
     completed: boolean
 }
 
-const todos: ToDo[] = []
 
 const btn = document.getElementById("btn")! as HTMLButtonElement   //  ! = Non-null Assertion
 const input = document.getElementById("todoinput")! as HTMLInputElement;
 const form = document.querySelector("form")!
 const list = document.getElementById("todolist")!
+
+const todos: ToDo[] = readToDos()
+todos.forEach(createToDo)
 
 /* btn.addEventListener("click", function(){
     alert(input.value)
@@ -20,18 +22,45 @@ const list = document.getElementById("todolist")!
     console.log("SUBMITTED!")
 }) */
 
+function readToDos(): ToDo[]{
+   const todosJSON = localStorage.getItem("todos")
+
+   if(todosJSON === null) return []
+   return JSON.parse(todosJSON)
+}
+
+function saveToDos(){
+   localStorage.setItem("todos", JSON.stringify(todos))
+}
+
 function handleSubmit(e: SubmitEvent){
     e.preventDefault()
-    //console.log("SUBMITTED!")
-    const newTodoText = input.value
-    const newLI = document.createElement("li")
-    const checkbox = document.createElement("input")
-    checkbox.type = "checkbox"
-    newLI.append(newTodoText)
-    newLI.append(checkbox)
-    list.append(newLI)
-
+    const newToDo: ToDo = {
+      text: input.value,
+      completed: false
+    }
+    createToDo(newToDo)
+    todos.push(newToDo)
+    saveToDos()
+    
     input.value = ""
+}
+
+function createToDo(todo: ToDo){
+   //const newTodoText = input.value
+   const newLI = document.createElement("li")
+   const checkbox = document.createElement("input")
+   checkbox.type = "checkbox"
+   checkbox.checked = todo.completed
+
+   checkbox.addEventListener("change", function(){
+      todo.completed = checkbox.checked
+      saveToDos()
+   })
+
+   newLI.append(todo.text)
+   newLI.append(checkbox)
+   list.append(newLI)
 }
 
 form.addEventListener("submit", handleSubmit)
