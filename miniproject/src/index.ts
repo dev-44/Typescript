@@ -1,3 +1,10 @@
+interface ToDo {
+    text: string,
+    completed: boolean
+}
+
+const todos: ToDo[] = []
+
 const btn = document.getElementById("btn")! as HTMLButtonElement   //  ! = Non-null Assertion
 const input = document.getElementById("todoinput")! as HTMLInputElement;
 const form = document.querySelector("form")!
@@ -23,7 +30,7 @@ function handleSubmit(e: SubmitEvent){
     newLI.append(newTodoText)
     newLI.append(checkbox)
     list.append(newLI)
-    
+
     input.value = ""
 }
 

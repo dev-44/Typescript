@@ -1,4 +1,5 @@
 "use strict";
+const todos = [];
 const btn = document.getElementById("btn"); //  ! = Non-null Assertion
 const input = document.getElementById("todoinput");
 const form = document.querySelector("form");
