@@ -29,3 +29,52 @@ class SuperPlayer extends Player {
         this.isAdmin = true;
     }
 }
+class Bike {
+    constructor(color) {
+        this.color = color;
+    }
+}
+class Jacket {
+    constructor(brand, color) {
+        this.brand = brand;
+        this.color = color;
+    }
+    print() {
+        console.log('Printed');
+    }
+}
+const jacket1 = new Jacket("Prada", "Black");
+//Abstract Class
+class Employee {
+    constructor(first, last) {
+        this.first = first;
+        this.last = last;
+    }
+    /*You can add functionality in abstract classes, not in interfaces*/
+    greet() {
+        console.log("Hello");
+    }
+}
+class FullTimeEmployee extends Employee {
+    constructor(first, last, salary) {
+        super(first, last);
+        this.salary = salary;
+    }
+    getPay() {
+        return this.salary;
+    }
+}
+class PartTimeEmployee extends Employee {
+    constructor(first, last, hourlyRate, hoursWorked) {
+        super(first, last);
+        this.hourlyRate = hourlyRate;
+        this.hoursWorked = hoursWorked;
+    }
+    getPay() {
+        return this.hourlyRate * this.hoursWorked;
+    }
+}
+const betty = new FullTimeEmployee("Betty", "White", 70000);
+console.log(betty.getPay());
+const bill = new PartTimeEmployee("Bill", "Smith", 24, 1100);
+console.log(bill.getPay());

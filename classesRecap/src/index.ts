@@ -43,3 +43,65 @@ elton.fullName
 class SuperPlayer extends Player {
    isAdmin: boolean = true
 }
+
+
+//Interfaces
+interface Colorful {
+   color: string
+}
+
+interface Printable {
+   print(): void 
+}
+
+class Bike implements Colorful {
+   constructor(public color: string) {
+   }
+}
+
+class Jacket implements Colorful, Printable {
+   constructor(public brand: string, public color: string) {}
+
+   print(): void {
+      console.log('Printed')
+   }
+}
+
+const jacket1 = new Jacket("Prada", "Black")
+
+//Abstract Class
+abstract class Employee {
+   constructor(public first: string, public last: string){}
+   abstract getPay(): number
+
+   /*You can add functionality in abstract classes, not in interfaces*/
+   greet(){
+      console.log("Hello")
+   }
+}
+
+class FullTimeEmployee extends Employee{
+   constructor(first: string, last: string, private salary: number){
+      super(first, last)
+   }
+
+   getPay(): number {
+      return this.salary
+   }
+}
+
+class PartTimeEmployee extends Employee {
+   constructor(first: string, last: string, private hourlyRate: number, private hoursWorked: number){
+      super(first, last)
+   }
+
+   getPay(): number {
+      return this.hourlyRate * this.hoursWorked
+   }
+}
+
+const betty = new FullTimeEmployee("Betty", "White", 70000)
+console.log(betty.getPay())
+
+const bill = new PartTimeEmployee("Bill", "Smith", 24, 1100)
+console.log(bill.getPay())
