@@ -34,3 +34,6 @@ function getRandomElement<T>(list: T[]): T {
 console.log(getRandomElement<string>(["a", "b", "c"]))
 console.log(getRandomElement<number>([5, 7, 9]))
 console.log(getRandomElement<boolean>([true, false, true]))
+
+//Inferred Generic  Type Parameters
+console.log(getRandomElement(["a", "b", "c"]))
