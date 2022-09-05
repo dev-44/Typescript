@@ -24,3 +24,13 @@ function booleanIdentity(item: boolean): boolean {
 function identity<Type> (item: Type): Type {
     return item
 }
+
+//Another example
+function getRandomElement<T>(list: T[]): T {
+    const randIdx = Math.floor(Math.random() * list.length)
+    return list[randIdx]
+}
+
+console.log(getRandomElement<string>(["a", "b", "c"]))
+console.log(getRandomElement<number>([5, 7, 9]))
+console.log(getRandomElement<boolean>([true, false, true]))
