@@ -37,3 +37,67 @@ console.log(getRandomElement<boolean>([true, false, true]))
 
 //Inferred Generic  Type Parameters
 console.log(getRandomElement(["a", "b", "c"]))
+
+//Generics with multiple types
+function merge<T,U>(object1: T, object2: U) {
+   return {
+      ...object1,
+      object2
+   }
+}
+
+const combo = merge({name: 'Oscar'}, {hobbies: ["videogames", "guitar"]})
+
+//Type Constraints
+function merge2<T extends object, U extends object>(object1: T, object2: U) {
+   return {
+      ...object1,
+      object2
+   }
+}
+
+
+interface Lengthy {
+   length: number
+}
+
+function printDoubleLength<T extends Lengthy>(param: T): number {
+   return param.length * 2
+}
+
+//Alternative
+function printDoubleLength2(param: Lengthy): number {
+   return param.length * 2
+}
+
+//Default Type Parameters
+function makeEmptyArray<T = number>(): T[] {
+   return []
+}
+
+makeEmptyArray<string>()
+makeEmptyArray<boolean>()
+makeEmptyArray()
+
+//Generic Classes
+interface Song {
+   title: string
+   artist: string
+}
+
+interface Video {
+   title: string
+   creator: string
+   resolution: string
+}
+
+class Playlist<T> {
+   public queue: T[] = []
+
+   add(element: T) {
+      this.queue.push(element)
+   }
+}
+
+const songs = new Playlist<Song>()
+const video = new Playlist<Video>()
